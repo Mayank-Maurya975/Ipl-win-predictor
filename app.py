@@ -1,9 +1,27 @@
 import streamlit as st
+import subprocess
+import sys
+
+# Try to install missing packages automatically
+def install_packages():
+    packages = ["pandas==1.5.3", "scikit-learn==1.2.2", "numpy==1.24.3"]
+    for package in packages:
+        try:
+            __import__(package.split('==')[0])
+        except ImportError:
+            st.warning(f"Installing {package}...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Call this function
+install_packages()
+
+# Now your regular imports
 import pandas as pd
 import pickle
-import base64
-import os
 import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+# Rest of your app...
 # ======================================
 # PAGE CONFIG
 # ======================================
