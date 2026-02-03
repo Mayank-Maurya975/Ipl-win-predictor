@@ -4,7 +4,6 @@ import pickle
 import base64
 import os
 import numpy as np
-
 # ======================================
 # PAGE CONFIG
 # ======================================
@@ -606,17 +605,6 @@ if wickets > 10:
 if overs >= 20 and score < target:
     validation_errors.append("⚠️ Match over! Batting team lost (20 overs completed)")
 
-# Display validation errors
-if validation_errors:
-    for error in validation_errors:
-        st.markdown(f"""
-        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); 
-                    border-radius: 16px; padding: 16px; margin: 10px 0; color: #ef4444;">
-            ⚠️ {error}
-        </div>
-        """, unsafe_allow_html=True)
-    st.stop()
-
 # Calculate parameters
 runs_left = target - score
 balls_left = max(0, 120 - int(overs * 6))
@@ -804,18 +792,33 @@ if predict_btn:
         elif bowl_prob < 0.3:
             st.markdown('<span class="status-tag tag-danger" style="display: block; text-align: center; margin-top: 15px;">🎯 NEED BREAKTHROUGHS</span>', unsafe_allow_html=True)
     
-    # Match Summary
+        # Match Summary
     st.markdown("---")
     st.markdown("### 📋 Match Summary")
     
     summary_col1, summary_col2, summary_col3 = st.columns(3)
     
     with summary_col1:
-        st.metric("Required Run Rate", f"{rrr:.2f}", delta=None)
+        # Only show RRR if it was calculated (not impossible case)
+        if 'rrr' in locals() and not impossible:
+            st.metric("Required Run Rate", f"{rrr:.2f}", delta=None)
+        else:
+            st.metric("Required Run Rate", "N/A")
+    
     with summary_col2:
-        st.metric("Runs per Ball", f"{runs_left/balls_left:.2f}" if balls_left > 0 else "N/A")
+        # Check if balls_left exists
+        if balls_left > 0 and not impossible:
+            st.metric("Runs per Ball", f"{runs_left/balls_left:.2f}")
+        else:
+            st.metric("Runs per Ball", "N/A")
+    
     with summary_col3:
-        st.metric("Pressure Index", f"{int((rrr/crr)*100)}%" if crr > 0 else "N/A")
+        # Check if both crr and rrr exist and crr > 0
+        if 'crr' in locals() and 'rrr' in locals() and crr > 0 and not impossible:
+            pressure_index = int((rrr/crr)*100) if rrr > 0 else 0
+            st.metric("Pressure Index", f"{pressure_index}%")
+        else:
+            st.metric("Pressure Index", "N/A")
     
     st.markdown("</div>", unsafe_allow_html=True)
 
