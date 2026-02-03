@@ -25,271 +25,570 @@ def get_base64_bin(path):
 
 bg_base64 = get_base64_bin("background.jpg")
 
+
 # ======================================
-# MODERN iOS/ANDROID 16 THEME CSS
+# OLED BLACK PREMIUM THEME (DARK ONLY)
 # ======================================
 st.markdown(f"""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     
     * {{
-        font-family: 'Times New Roman', serif !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        transition: all 0.3s ease !important;
     }}
     
+    /* OLED Black Theme */
     .stApp {{
-        background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 50%, #0a0e17 100%);
-        background-attachment: fixed;
+        background: #000000 !important;
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%) !important;
+        background-attachment: fixed !important;
     }}
     
-    /* Modern glass morphism */
+    /* OLED Glass Cards with Animated Border */
     .glass-card {{
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 24px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        background: rgba(10, 10, 10, 0.7) !important;
+        backdrop-filter: blur(30px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+        border-radius: 20px !important;
+        padding: 28px !important;
+        position: relative !important;
+        z-index: 1 !important;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) !important;
+        border: none !important;
     }}
     
-    .glass-card-dark {{
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 20px;
+    .glass-card::before {{
+        content: '' !important;
+        position: absolute !important;
+        top: -2px !important;
+        left: -2px !important;
+        right: -2px !important;
+        bottom: -2px !important;
+        background: linear-gradient(45deg, 
+            #000000, #1a1a1a, #2a2a2a, #1a1a1a, #000000) !important;
+        z-index: -1 !important;
+        border-radius: 22px !important;
+        animation: borderPulse 4s linear infinite !important;
+        background-size: 400% !important;
     }}
     
-    /* Modern input styling */
+    .glass-card:hover {{
+        transform: translateY(-8px) scale(1.01) !important;
+        box-shadow: 
+            0 20px 50px rgba(0, 0, 0, 0.8),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 0 40px rgba(59, 130, 246, 0.15) !important;
+    }}
+    
+    /* OLED Inputs with Animated Borders */
     .stSelectbox > div > div {{
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        color: white;
-        font-size: 16px;
-        height: 56px;
-        padding: 0 16px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(15, 15, 15, 0.8) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 14px !important;
+        color: white !important;
+        font-size: 15px !important;
+        height: 58px !important;
+        padding: 0 20px !important;
+        transition: all 0.3s !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }}
+    
+    .stSelectbox > div > div::before {{
+        content: '' !important;
+        position: absolute !important;
+        top: -2px !important;
+        left: -2px !important;
+        right: -2px !important;
+        bottom: -2px !important;
+        background: linear-gradient(45deg, 
+            #3b82f6, #8b5cf6, #22c55e, #8b5cf6, #3b82f6) !important;
+        z-index: -1 !important;
+        border-radius: 16px !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s !important;
     }}
     
     .stSelectbox > div > div:hover {{
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
+        background: rgba(25, 25, 25, 0.9) !important;
+        transform: translateY(-2px) !important;
+        border-color: transparent !important;
+    }}
+    
+    .stSelectbox > div > div:hover::before {{
+        opacity: 0.5 !important;
+        animation: borderFlow 2s linear infinite !important;
+        background-size: 400% !important;
     }}
     
     .stNumberInput input {{
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 16px !important;
+        background: rgba(15, 15, 15, 0.8) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 14px !important;
         color: white !important;
-        font-size: 16px !important;
-        height: 56px !important;
-        padding: 0 16px !important;
+        font-size: 15px !important;
+        height: 58px !important;
+        padding: 0 20px !important;
+        position: relative !important;
+        overflow: hidden !important;
     }}
     
     .stNumberInput input:focus {{
         border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+        box-shadow: 
+            0 0 0 3px rgba(59, 130, 246, 0.2),
+            0 0 20px rgba(59, 130, 246, 0.3) !important;
+        background: rgba(20, 20, 20, 0.9) !important;
     }}
     
-    /* Modern button */
+        /* Premium Black Button with Animated Border */
     div.stButton > button:first-child {{
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        color: white;
-        border: none;
-        padding: 20px 0;
-        font-weight: 700;
-        border-radius: 16px;
-        width: 100%;
-        font-size: 18px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
+        background: linear-gradient(135deg, #000000, #0a0a0a) !important;
+        color: white !important;
+        padding: 22px 0 !important;
+        font-weight: 700 !important;
+        border-radius: 14px !important;
+        width: 100% !important;
+        font-size: 17px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        position: relative !important;
+        z-index: 1 !important;
+        border: none !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+        transition: all 0.3s !important;
+        overflow: hidden !important;
     }}
     
     div.stButton > button:first-child::before {{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.5s;
+        content: '' !important;
+        position: absolute !important;
+        top: -2px !important;
+        left: -2px !important;
+        right: -2px !important;
+        bottom: -2px !important;
+        background: linear-gradient(45deg, 
+            #000000, #1a1a1a, #2a2a2a, #1a1a1a, #000000) !important;
+        z-index: -1 !important;
+        border-radius: 16px !important;
+        animation: borderGlow 3s linear infinite !important;
+        background-size: 400% !important;
     }}
     
-    div.stButton > button:hover:first-child {{
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    @keyframes borderGlow {{
+        0% {{ background-position: 0% 50%; }}
+        50% {{ background-position: 100% 50%; }}
+        100% {{ background-position: 0% 50%; }}
     }}
     
-    div.stButton > button:hover:first-child::before {{
-        left: 100%;
+    div.stButton > button:first-child:hover {{
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.1) !important;
+        letter-spacing: 1px !important;
+        color: #ffffff !important;
     }}
     
-    /* Modern progress bars */
+    div.stButton > button:first-child::after {{
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.05), 
+            transparent) !important;
+        transition: 0.5s !important;
+    }}
+    
+    div.stButton > button:hover:first-child::after {{
+        left: 100% !important;
+    }}
+    
+    /* Light Theme Version */
+    .light-theme div.stButton > button:first-child {{
+        background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+        color: white !important;
+    }}
+    
+    .light-theme div.stButton > button:first-child::before {{
+        background: linear-gradient(45deg, 
+            #3b82f6, #8b5cf6, #22c55e, #8b5cf6, #3b82f6) !important;
+    }}
+    
+    /* OLED Progress Bars with Glow */
     .stProgress > div > div > div {{
-        background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
-        border-radius: 12px;
-        height: 12px;
+        background: linear-gradient(90deg, #22c55e 0%, #3b82f6 50%, #8b5cf6 100%) !important;
+        border-radius: 10px !important;
+        height: 10px !important;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }}
+    
+    .stProgress > div > div > div::after {{
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.3), 
+            transparent) !important;
+        animation: shimmer 2s infinite !important;
     }}
     
     .stProgress > div > div {{
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5) !important;
     }}
     
-    /* Stat cards */
+    /* OLED Stat Cards with Glow Effect */
     .stat-card-modern {{
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        transition: transform 0.3s ease;
+        background: linear-gradient(135deg, 
+            rgba(34, 197, 94, 0.1), 
+            rgba(59, 130, 246, 0.05)) !important;
+        border-radius: 18px !important;
+        padding: 24px !important;
+        text-align: center !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        transition: all 0.3s ease !important;
+        backdrop-filter: blur(15px) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }}
+    
+    .stat-card-modern::before {{
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.03), 
+            transparent) !important;
     }}
     
     .stat-card-modern:hover {{
-        transform: translateY(-5px);
+        transform: translateY(-8px) scale(1.05) !important;
+        border-color: rgba(34, 197, 94, 0.3) !important;
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.7),
+            0 0 30px rgba(34, 197, 94, 0.2) !important;
+    }}
+    
+    .stat-card-modern:hover::before {{
+        left: 100% !important;
+        transition: left 0.7s !important;
     }}
     
     .stat-val-modern {{
-        font-size: 36px;
-        font-weight: 800;
-        background: linear-gradient(135deg, #3b82f6, #10b981);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-family: 'Times New Roman', serif;
+        font-size: 42px !important;
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #22c55e, #3b82f6, #8b5cf6) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        letter-spacing: -1px !important;
+        text-shadow: 0 2px 10px rgba(34, 197, 94, 0.3) !important;
     }}
     
-    /* Probability circles */
+    /* OLED Probability Circles with Neon Glow */
     .prob-circle {{
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: conic-gradient(#10b981 var(--progress), rgba(255, 255, 255, 0.1) 0%);
-        position: relative;
-        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        width: 200px !important;
+        height: 200px !important;
+        border-radius: 50% !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: conic-gradient(
+            #22c55e 0% var(--progress),
+            rgba(255, 255, 255, 0.05) 0%) !important;
+        position: relative !important;
+        box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.6),
+            inset 0 2px 0 rgba(255, 255, 255, 0.1),
+            0 0 30px rgba(34, 197, 94, 0.3) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
     }}
-    
-    
     
     .prob-circle::before {{
-        content: '';
-        position: absolute;
-        width: 160px;
-        height: 160px;
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        border-radius: 50%;
+        content: '' !important;
+        position: absolute !important;
+        width: 174px !important;
+        height: 174px !important;
+        background: linear-gradient(135deg, #0a0a0a, #000000) !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }}
+    
+    .prob-circle::after {{
+        content: '' !important;
+        position: absolute !important;
+        width: 210px !important;
+        height: 210px !important;
+        border-radius: 50% !important;
+        background: conic-gradient(
+            transparent 0% var(--progress),
+            rgba(34, 197, 94, 0.1) var(--progress) 100%) !important;
+        filter: blur(15px) !important;
+        z-index: -1 !important;
     }}
     
     .prob-circle-content {{
-        position: relative;
-        z-index: 2;
-        text-align: center;
+        position: relative !important;
+        z-index: 2 !important;
+        text-align: center !important;
     }}
     
-    /* Tags */
+    /* OLED Tags with Glow */
     .status-tag {{
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 14px;
-        font-weight: 600;
-        margin: 4px;
+        display: inline-block !important;
+        padding: 12px 24px !important;
+        border-radius: 50px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        margin: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        letter-spacing: 0.3px !important;
+        transition: all 0.3s !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }}
+    
+    .status-tag::before {{
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.1), 
+            transparent) !important;
+    }}
+    
+    .status-tag:hover::before {{
+        left: 100% !important;
+        transition: left 0.6s !important;
     }}
     
     .tag-success {{
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.3);
+        background: linear-gradient(135deg, 
+            rgba(34, 197, 94, 0.15), 
+            rgba(34, 197, 94, 0.05)) !important;
+        color: #22c55e !important;
+        border-color: rgba(34, 197, 94, 0.3) !important;
+        box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2) !important;
     }}
     
     .tag-warning {{
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.3);
+        background: linear-gradient(135deg, 
+            rgba(245, 158, 11, 0.15), 
+            rgba(245, 158, 11, 0.05)) !important;
+        color: #f59e0b !important;
+        border-color: rgba(245, 158, 11, 0.3) !important;
+        box-shadow: 0 5px 15px rgba(245, 158, 11, 0.2) !important;
     }}
     
     .tag-danger {{
-        background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
-        color: #ef4444;
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        background: linear-gradient(135deg, 
+            rgba(239, 68, 68, 0.15), 
+            rgba(239, 68, 68, 0.05)) !important;
+        color: #ef4444 !important;
+        border-color: rgba(239, 68, 68, 0.3) !important;
+        box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2) !important;
     }}
     
-    /* Animations */
-    @keyframes fadeIn {{
-        from {{ opacity: 0; transform: translateY(20px); }}
-        to {{ opacity: 1; transform: translateY(0); }}
-    }}
-    
-    .animate-in {{
-        animation: fadeIn 0.5s ease forwards;
-    }}
-    
-    /* Hide Streamlit elements */
-    #MainMenu {{visibility: hidden;}}
-    footer {{visibility: hidden;}}
-    header {{visibility: hidden;}}
-    
-    /* Headers */
+    /* OLED Headers with Gradient Text */
     h1, h2, h3, h4 {{
-        background: linear-gradient(135deg, #ffffff, #a5b4fc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        font-family: 'Times New Roman', serif;
+        background: linear-gradient(135deg, 
+            #ffffff, 
+            #a5b4fc, 
+            #22c55e,
+            #3b82f6) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        font-weight: 900 !important;
+        letter-spacing: -0.5px !important;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
     }}
     
     h1 {{
-        font-size: 3.5rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 4rem !important;
+        margin-bottom: 1.5rem !important;
+        position: relative !important;
     }}
     
-    /* Smooth scrolling */
-    html {{
-        scroll-behavior: smooth;
+    h1::after {{
+        content: '' !important;
+        position: absolute !important;
+        bottom: -10px !important;
+        left: 0 !important;
+        width: 100px !important;
+        height: 4px !important;
+        background: linear-gradient(90deg, #22c55e, #3b82f6) !important;
+        border-radius: 2px !important;
     }}
     
-    /* Custom metric styling */
+    h2 {{
+        font-size: 2.8rem !important;
+        margin: 2rem 0 1.5rem 0 !important;
+    }}
+    
+    /* OLED Sidebar */
+    [data-testid="stSidebar"] {{
+        background: linear-gradient(180deg, #000000, #0a0a0a) !important;
+        border-right: 2px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 5px 0 30px rgba(0, 0, 0, 0.8) !important;
+    }}
+    
+    /* OLED Metrics */
     .stMetric {{
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 16px;
-        padding: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(20, 20, 20, 0.7) !important;
+        border-radius: 16px !important;
+        padding: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
+        transition: all 0.3s !important;
     }}
     
-    /* Expander styling */
+    .stMetric:hover {{
+        transform: translateY(-5px) !important;
+        border-color: rgba(59, 130, 246, 0.3) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7) !important;
+    }}
+    
+    /* Hide Streamlit elements */
+    #MainMenu {{visibility: hidden !important;}}
+    footer {{visibility: hidden !important;}}
+    header {{visibility: hidden !important;}}
+    
+    /* Animations */
+    @keyframes borderFlow {{
+        0% {{ background-position: 0% 50%; }}
+        50% {{ background-position: 100% 50%; }}
+        100% {{ background-position: 0% 50%; }}
+    }}
+    
+    @keyframes borderPulse {{
+        0%, 100% {{ opacity: 0.3; }}
+        50% {{ opacity: 0.7; }}
+    }}
+    
+    @keyframes shimmer {{
+        0% {{ transform: translateX(-100%); }}
+        100% {{ transform: translateX(100%); }}
+    }}
+    
+    @keyframes fadeIn {{
+        from {{ opacity: 0; transform: translateY(20px) scale(0.95); }}
+        to {{ opacity: 1; transform: translateY(0) scale(1); }}
+    }}
+    
+    .animate-in {{
+        animation: fadeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards !important;
+    }}
+    
+    /* OLED Expander */
     .streamlit-expanderHeader {{
-        background: rgba(255, 255, 255, 0.05) !important;
-        border-radius: 16px !important;
+        background: rgba(20, 20, 20, 0.7) !important;
+        border-radius: 14px !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        margin: 10px 0 !important;
+        transition: all 0.3s !important;
     }}
     
     .streamlit-expanderHeader:hover {{
-        background: rgba(255, 255, 255, 0.08) !important;
+        background: rgba(30, 30, 30, 0.8) !important;
+        border-color: rgba(59, 130, 246, 0.3) !important;
+        transform: translateY(-2px) !important;
     }}
     
-    /* Sidebar styling */
-    [data-testid="stSidebar"] {{
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
+    /* OLED Text Colors */
+    p, label, .stMarkdown, .st-caption {{
+        color: rgba(255, 255, 255, 0.85) !important;
     }}
     
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {{
+        width: 12px !important;
+    }}
     
+    ::-webkit-scrollbar-track {{
+        background: rgba(20, 20, 20, 0.5) !important;
+        border-radius: 10px !important;
+    }}
+    
+    ::-webkit-scrollbar-thumb {{
+        background: linear-gradient(135deg, #22c55e, #3b82f6) !important;
+        border-radius: 10px !important;
+        border: 2px solid rgba(20, 20, 20, 0.5) !important;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5) !important;
+    }}
+    
+    ::-webkit-scrollbar-thumb:hover {{
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+    }}
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {{
+        h1 {{ 
+            font-size: 2.8rem !important; 
+            text-align: center !important;
+        }}
+        h1::after {{
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 80px !important;
+        }}
+        .glass-card {{ 
+            padding: 20px !important; 
+            margin: 10px !important; 
+        }}
+        .prob-circle {{ 
+            width: 170px !important; 
+            height: 170px !important; 
+        }}
+        .prob-circle::before {{ 
+            width: 148px !important; 
+            height: 148px !important; 
+        }}
+        .prob-circle::after {{ 
+            width: 178px !important; 
+            height: 178px !important; 
+        }}
+        .stat-val-modern {{ font-size: 36px !important; }}
+    }}
+    
+    /* Loading Animation */
+    @keyframes pulse {{
+        0%, 100% {{ opacity: 1; }}
+        50% {{ opacity: 0.5; }}
+    }}
+    
+    .pulse {{
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }}
     </style>
 """, unsafe_allow_html=True)
-
 # ======================================
 # CRICKET LOGIC FUNCTIONS (Same as before)
 # ======================================
