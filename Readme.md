@@ -56,15 +56,6 @@ Real-time win probability calculation
 Cricket-based rule adjustments for realistic predictions
 Clean and interactive UI
 
-▶️ How to Run the Project
-Clone the repository
-git clone https://github.com/yourusername/ipl-win-predictor.git
-cd ipl-win-predictor
-Install dependencies
-pip install -r requirements.txt
-Run the Streamlit app
-streamlit run app.py
-
 📈 Future Improvements
 Improve probability calibration
 Add first innings prediction
